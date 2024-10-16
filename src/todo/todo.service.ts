@@ -13,6 +13,9 @@ export class TodoService {
   findAll() {
     return this.todoReposity.find();
   }
+  findOne(id: number) {
+    return this.todoReposity.findOne({ where: { id: id } });
+  }
   create(title: string) {
     const todo = new Todo();
     todo.title = title;
