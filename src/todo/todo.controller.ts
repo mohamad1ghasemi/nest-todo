@@ -7,11 +7,11 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { TodoService } from './todo.service';
+import { ITodoService } from './todo-service.interface';
 
 @Controller('todo')
 export class TodoController {
-  constructor(private readonly todoService: TodoService) {}
+  constructor(private readonly todoService: ITodoService) {}
 
   @Get()
   findAll() {
