@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Todo } from './todo.entity';
-import { ITodoService } from './todo-service.interface';
+import { ITodoService } from './interface/todo-service.interface';
 import { ITodoRepository } from '../todo-repository.interface';
+import { CreateTodoDto } from './dto/create-todo.dto';
+import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Injectable()
 export class TodoService implements ITodoService {
@@ -15,16 +17,21 @@ export class TodoService implements ITodoService {
     return this.todoRepository.findOne(id);
   }
 
-  public create(title: string): Promise<Todo> {
-    const todo = new Todo();
-    todo.title = title;
-    return this.todoRepository.add(todo);
+  public create(todo: CreateTodoDto): Promise<Todo> {
+    const newTodo = new Todo();
+    newTodo.title = todo.title;
+    return this.todoRepository.add(newTodo);
   }
 
-  public async update(id: number, isCompleted: boolean): Promise<void> {
-    const todo = await this.todoRepository.findOne(id);
+  public async update(updateTodoDto: UpdateTodoDto): Promise<void> {
+    const todo = await this.todoRepository.findOne(updateTodoDto.id);
     if (todo) {
-      todo.isCompleted = isCompleted;
+      if (updateTodoDto.title !== undefined) {
+        todo.title = updateTodoDto.title;
+      }
+      if (updateTodoDto.isCompleted !== undefined) {
+        todo.isCompleted = updateTodoDto.isCompleted;
+      }
       await this.todoRepository.save(todo);
     }
   }

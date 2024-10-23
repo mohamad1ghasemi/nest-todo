@@ -3,7 +3,7 @@ import { TodoController } from './todo.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from './todo.entity';
 import { TodoService } from './todo.service';
-import { ITodoService } from './todo-service.interface';
+import { ITodoService } from './interface/todo-service.interface';
 import { ITodoRepository } from '../todo-repository.interface';
 import { TodoRepository } from './todo.repository';
 
