@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Todo } from './todo.entity';
 import { ITodoService } from './interface/todo-service.interface';
-import { ITodoRepository } from '../todo-repository.interface';
+import { ITodoRepository } from './todo-repository.interface';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 
